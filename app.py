@@ -92,13 +92,14 @@ if st.button("Reset"):
     st.rerun()
 
 
-tab2, tab3 = st.tabs(["Tables", "Solution"])
-with tab2:
+with st.expander("Tables"):
+    st.header("Source Tables")
     exercise_tables = exercise.loc[0, "tables"]
     for table in exercise_tables:
         st.write(f"table: {table}")
         df_table = con.execute(f"SELECT * FROM {table}").df()
         st.dataframe(df_table)
 
-with tab3:
+with st.expander("Solution"):
+    st.header("Query Result / Query")
     st.write(answer)
