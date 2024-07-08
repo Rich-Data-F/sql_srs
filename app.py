@@ -57,7 +57,9 @@ with st.sidebar:
         st.write(f"You selected {theme}")
         select_exercise_query = f"SELECT * FROM memory_state WHERE theme = '{theme}'"
     else:
-        select_exercise_query = "SELECT * FROM memory_state" #f"SELECT * FROM memory_state"
+        select_exercise_query = (
+            "SELECT * FROM memory_state"  # f"SELECT * FROM memory_state"
+        )
 
     exercise = (
         con.execute(select_exercise_query)
