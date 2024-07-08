@@ -12,7 +12,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install black
       - run: |
-          black --check --verbose .
+          # Find all non-ipynb files and run black on them
+          git ls-files '*.py' | xargs black --check --verbose
   pylint:
     runs-on: ubuntu-22.04
     steps:
@@ -24,4 +25,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install pylint
       - run: |
-          black --check --verbose .
+          # Find all non-ipynb files and run black on them
+          git ls-files '*.py' | xargs black --check --verbose
