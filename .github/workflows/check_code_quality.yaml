@@ -26,4 +26,4 @@ jobs:
           pip install pylint
       - run: |
           # Find all non-ipynb files and run black on them
-          git ls-files '*.py' | xargs black --check --verbose
+          git ls-files '*.py' | xargs pylint --check --verbose
