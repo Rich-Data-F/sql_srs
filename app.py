@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=invalid-name
 
-import sys
+#import sys
 import os
 import logging
 from datetime import date, timedelta
@@ -20,6 +20,7 @@ if "exercises_sql_tables.duckdb" not in os.listdir("data"):
     subprocess.run(["sys.executable", "init_db.py"], check=True)
 
 con = duckdb.connect(database="data/exercises_sql_tables.duckdb", read_only=False)
+
 
 def check_users_solution(user_query: str) -> None:
     """

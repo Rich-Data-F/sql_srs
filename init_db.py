@@ -1,3 +1,7 @@
+#pylint: disable=invalid-name
+#pylint: disable=missing-module-docstring
+
+
 import io
 import pandas as pd
 import duckdb
@@ -9,6 +13,8 @@ con = duckdb.connect(database="data/exercises_sql_tables.duckdb", read_only=Fals
 # ------------------------------------------------------------
 
 data = {
+""" definition of the bank of exercices available
+"""
     "theme": ["cross_joins", "cross_joins"],
     "exercise_name": ["beverages_and_food", "sizes_and_trademarks"],
     "tables": [["beverages", "food_items"], ["sizes", "trademarks"]],
@@ -48,7 +54,7 @@ L
 XL
 """
 sizes = pd.read_csv(io.StringIO(sizes))
-#con.execute("CREATE TABLE IF NOT EXISTS sizes AS SELECT * FROM sizes")
+# con.execute("CREATE TABLE IF NOT EXISTS sizes AS SELECT * FROM sizes")
 con.execute("CREATE OR REPLACE TABLE sizes AS SELECT * FROM sizes")
 
 trademarks = """
@@ -59,6 +65,8 @@ Abercrombie
 Levi's
 """
 trademarks = pd.read_csv(io.StringIO(trademarks))
-con.execute("CREATE OR REPLACE TABLE trademarks AS SELECT * FROM trademarks") #instead of CREATE TABLE IF NOT EXISTS
+con.execute(
+    "CREATE OR REPLACE TABLE trademarks AS SELECT * FROM trademarks"
+)  # instead of CREATE TABLE IF NOT EXISTS
 
 con.close()
