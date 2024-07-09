@@ -93,20 +93,25 @@ for n_days in [2, 7, 21]:
         )
         st.rerun()
 
-# if st.button("Reset"):
-#     con.execute("UPDATE memory_state SET last_reviewed = '1970-01-01'")
-#     # con.execute(f"UPDATE memory_state SET last_reviewed = '1970-01-01'")
-#     st.rerun()
+if st.button("Reset"):
+    con.execute("UPDATE memory_state SET last_reviewed = '1970-01-01'")
+    # con.execute(f"UPDATE memory_state SET last_reviewed = '1970-01-01'")
+    st.rerun()
 
 
-# with st.expander("Tables"):
-#     st.header("Source Tables")
-#     exercise_tables = exercise.loc[0, "tables"]
-#     for table in exercise_tables:
-#         st.write(f"table: {table}")
-#         df_table = con.execute(f"SELECT * FROM {table}").df()
-#         st.dataframe(df_table)
+with st.expander("Tables"):
+    st.header("Source Tables")
+    exercise_tables = exercise.loc[0, "tables"]
+    for table in exercise_tables:
+        st.write(f"table: {table}")
+        df_table = con.execute(f"SELECT * FROM {table}").df()
+        st.dataframe(df_table)
 
-# with st.expander("Solution"):
-#     st.header("Query Result / Query")
-#     st.write(answer)
+with st.expander("Target Result"):
+    st.header("Solution Tables")
+    target_result = con.execute(answer).df()
+    st.dataframe(target_result)
+
+with st.expander("Solution"):
+    st.header("Query Result / Query")
+    st.write(answer)
